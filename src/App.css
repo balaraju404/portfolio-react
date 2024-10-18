@@ -22,6 +22,7 @@ a {
  color: #61dafb;
 }
 
+/* Navbar */
 .navbar {
  display: flex;
 }
@@ -33,7 +34,8 @@ a {
  gap: 20px;
 }
 
-.navbar-item {
+.navbar-item,
+.navbar-list>li {
  padding: 10px;
  border-radius: 10px;
  background-color: #282c34;
@@ -51,6 +53,38 @@ a {
 }
 
 .navbar-item.Active {
+ background-color: #61dafb;
+ color: #282c34;
+ font-weight: bold;
+}
+
+/* sub nav */
+.sub-navbar-list {
+ list-style: none;
+ padding: 0;
+ display: flex;
+ gap: 20px;
+}
+
+.sub-navbar-item,
+.sub-navbar-list>li {
+ padding: 10px;
+ border-radius: 10px;
+ /* background-color: #282c34;
+ color: white; */
+ cursor: pointer;
+ transition: background-color 0.3s ease, color 0.3s ease;
+
+ /* a {
+  color: white;
+ } */
+}
+
+.sub-navbar-item:hover {
+ background-color: #3b3f4e;
+}
+
+.sub-navbar-item.Active {
  background-color: #61dafb;
  color: #282c34;
  font-weight: bold;
@@ -89,6 +123,7 @@ a {
  }
 }
 
+/* Footer */
 .footer {
  height: 10vh;
  display: flex;
@@ -111,6 +146,7 @@ a {
  text-decoration: underline;
 }
 
+/* Content */
 .main-content {
  height: 76.7vh;
  overflow-x: scroll;
@@ -122,8 +158,8 @@ a {
 .page-container {
  display: flex;
  flex-direction: column;
- align-items: center;
- justify-content: center;
+ /* align-items: center; */
+ /* justify-content: center; */
  height: max-content;
 }
 
@@ -167,4 +203,61 @@ button:hover {
 button:disabled {
  background-color: #cccccc;
  cursor: not-allowed;
+}
+
+
+/* flex */
+.container-center {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+
+.container-center.row {
+ flex-direction: row;
+}
+
+.container-center.column {
+ flex-direction: column;
+}
+
+
+.d-flex {
+ display: flex;
+}
+
+.justify-center {
+ justify-content: center;
+}
+
+.justify-space-around {
+ justify-content: space-around;
+}
+
+.justify-space-between {
+ justify-content: space-between;
+}
+
+.justify-space-evenly {
+ justify-content: space-evenly;
+}
+
+.justify-satrt {
+ justify-content: start;
+}
+
+.justify-end {
+ justify-content: end;
+}
+
+.align-item-center {
+ align-items: center;
+}
+
+.align-item-center {
+ align-items: start;
+}
+
+.align-item-center {
+ align-items: end;
 }

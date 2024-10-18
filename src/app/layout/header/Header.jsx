@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { getUserID } from '../../utils/DBManagerService';
 
 const Header = () => {
+ const userId = getUserID()
 
  const [acvPage, setAcvPage] = useState('home')
 
  function onPageChange(pageValue) {
   setAcvPage(pageValue)
+ }
+ function onLogout(){
+  localStorage.clear()
+  window.location.href = '/login'
  }
  return (
   <header className='App-header'>
@@ -27,7 +33,10 @@ const Header = () => {
      </li>
     </ul>
    </div>
-   <button className='login-btn'><Link to="/login">Login</Link></button>
+   {
+    userId ? (<button className='login-btn'><Link onClick={onLogout}>Logout</Link></button>)
+     : (<button className='login-btn'><Link to="/login">Login</Link></button>)
+   }
   </header>
  );
 }
