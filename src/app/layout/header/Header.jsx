@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { getUserID } from '../../utils/DBManagerService';
+import { Link, useNavigate } from 'react-router-dom';
+import { getUserID, getUserName } from '../../utils/DBManagerService';
 
 const Header = () => {
+ const navigate = useNavigate()
  const userId = getUserID()
-
- const [acvPage, setAcvPage] = useState('home')
+ const curPage = window.location.href.split('/')[3]
+ const [acvPage, setAcvPage] = useState(curPage)
 
  function onPageChange(pageValue) {
   setAcvPage(pageValue)
+  navigate('/' + pageValue)
  }
- function onLogout(){
+ function onLogout() {
   localStorage.clear()
   window.location.href = '/login'
  }
@@ -34,7 +36,13 @@ const Header = () => {
     </ul>
    </div>
    {
-    userId ? (<button className='login-btn'><Link onClick={onLogout}>Logout</Link></button>)
+    userId ? ('') : ('')
+   }
+   {
+    userId ? (<div className='d-flex justify-space-between align-items-center gap-2'>
+     <p>{getUserName()}</p>
+     <button className='login-btn'><Link onClick={onLogout}>Logout</Link></button>
+    </div>)
      : (<button className='login-btn'><Link to="/login">Login</Link></button>)
    }
   </header>

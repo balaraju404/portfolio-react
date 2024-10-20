@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { API_ENDPOINT_URL, LS_USER_DATA_KEY } from '../../utils/constants';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { addDataToLS } from '../../utils/DBManagerService';
 
 const Login = () => {
+ const navigate = useNavigate()
  const [formState, setFormState] = useState({ username: '', password: '' });
  const [loading, setLoading] = useState(false);
  const { username, password } = formState;
@@ -27,6 +28,7 @@ const Login = () => {
    if (data.status) {
     addDataToLS(LS_USER_DATA_KEY, data.data);
     alert(data.msg);
+    navigate('/home')
    } else {
     alert(data.msg || 'Login failed.');
    }
