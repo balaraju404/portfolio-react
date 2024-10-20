@@ -1,5 +1,5 @@
-import React, { useEffect, useId, useState } from 'react';
-import axios from 'axios'; // Add axios import
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { getRoleID, getUserID } from '../../utils/DBManagerService';
 import { Link, useNavigate } from 'react-router-dom';
 import { API_ENDPOINT_URL } from '../../utils/constants';
@@ -15,10 +15,8 @@ const PortfolioPage = () => {
   try {
    const response = await axios.post(`${API_ENDPOINT_URL}portfolio/getAll`, {});
    const data = response.data;
-   console.log(data);
    if (data.status) {
     setPortfoliosData(data.data);
-    console.log(data.data, getUserID());
 
     const myPortfolios = data.data.filter(item => item['user_id'] === getUserID());
     setMyPortfoliosData(myPortfolios);
@@ -31,7 +29,7 @@ const PortfolioPage = () => {
  };
 
  useEffect(() => {
-  getPortfolios(); // Call the function to fetch portfolios
+  getPortfolios();
  }, []);
 
  function onNavigate(id) {
@@ -61,7 +59,7 @@ const PortfolioPage = () => {
        <div className='portfolio-list' >
         {myPortfoliosData.map((item, index) => (
          <div key={index} className='portfolio-card' onClick={() => { onNavigate(item['_id']) }}>
-          <img src={item.img || img} alt="Portfolio img" /> {/* Corrected this line */}
+          <img src={item.img || img} alt="Portfolio img" />
           <h6 className='text-center'>{item['portfolio_name'] || 'Name not available'}</h6>
           <p>{item.description || ''}</p>
          </div>
@@ -79,7 +77,7 @@ const PortfolioPage = () => {
        <div className='portfolio-list'>
         {myPortfoliosData.map((item, index) => (
          <div key={index} className='portfolio-card'>
-          <img src={item.img || img} alt="Portfolio img" /> {/* Corrected this line */}
+          <img src={item.img || img} alt="Portfolio img" />
           <h6 className='text-center'>{item['portfolio_name'] || 'Name not available'}</h6>
          </div>
         ))}
