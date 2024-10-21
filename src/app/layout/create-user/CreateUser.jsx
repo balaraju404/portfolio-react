@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom'
-import { API_ENDPOINT_URL, navigate } from '../../utils/constants';
+import { API_ENDPOINT_URL } from '../../utils/constants';
 
 const CreateUser = () => {
  const navigate = useNavigate()

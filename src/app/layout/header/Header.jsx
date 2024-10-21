@@ -41,9 +41,9 @@ const Header = () => {
    {
     userId ? (<div className='d-flex justify-space-between align-items-center gap-2'>
      <p>{getUserName()}</p>
-     <button className='login-btn'><Link onClick={onLogout}>Logout</Link></button>
+     <button onClick={onLogout} className='login-btn'><Link>Logout</Link></button>
     </div>)
-     : (<button className='login-btn'><Link to="/login">Login</Link></button>)
+     : (<button onClick={() => { onPageChange('login') }} className='login-btn'><Link to="/login">Login</Link></button>)
    }
   </header>
  );

@@ -10,6 +10,14 @@ const Portfolio = () => {
  // const [loading, setLoading] = useState(true);
  const [editMode, setEditMode] = useState(false)
 
+ // eslint-disable-next-line no-unused-vars
+ const [headerParams, setHeaderParams] = useState({ 'portfolio_name': '', 'title_header_name': '', 'name': '', 'designation_name': '' })
+ 
+ function onChangeHeader(event) {
+  const { name, value } = event.target
+  setHeaderParams((prev) => ({ ...prev, [name]: value }))
+ }
+
  const getPortfolio = useCallback(async () => {
   try {
    const params = { portfolio_id: portfolioId };
@@ -23,8 +31,8 @@ const Portfolio = () => {
   } catch (error) {
    alert(JSON.stringify(error));
   }
- }, [portfolioId]); 
- 
+ }, [portfolioId]);
+
  useEffect(() => {
   getPortfolio();
  }, [getPortfolio]);
@@ -39,7 +47,7 @@ const Portfolio = () => {
  return (
   <div className='page-container portfolio primary'>
    <div className='d-flex justify-space-between align-items-center'>
-    <p>{portfolioData['portfolio_name']}</p>
+    {editMode?(<input onChange={onChangeHeader} type='text' name='portfolio_name' defaultValue={portfolioData['portfolio_name']}/>):(<p>{portfolioData['portfolio_name']}</p>)}
     {editMode ? (
      <div className='d-flex gap-2 align-items-center'>
       <button onClick={onCancel}>Cancel</button>
